@@ -88,25 +88,25 @@ module RDig
       # Return the given string minus all html comments
       def strip_comments(string)
 				if RUBY_VERSION < '1.9'
-					string.gsub Regexp.new('<!--.*?-->', Regexp::MULTILINE), ''
-				else
 					string.gsub Regexp.new('<!--.*?-->', Regexp::MULTILINE, 'u'), ''
+				else
+					string.gsub Regexp.new('<!--.*?-->', Regexp::MULTILINE), ''
 				end
       end
       
       def strip_tags(string)
 				if RUBY_VERSION < '1.9'
 					string.gsub! Regexp.new('<(script|style).*?>.*?<\/(script|style).*?>', 
-																	Regexp::MULTILINE), ''
-					string.gsub! Regexp.new('<.+?>',
-																	Regexp::MULTILINE), ''
-					string.gsub! Regexp.new('\s+', Regexp::MULTILINE), ' '
-				else
-					string.gsub! Regexp.new('<(script|style).*?>.*?<\/(script|style).*?>', 
 																	Regexp::MULTILINE, 'u'), ''
 					string.gsub! Regexp.new('<.+?>',
 																	Regexp::MULTILINE, 'u'), ''
 					string.gsub! Regexp.new('\s+', Regexp::MULTILINE, 'u'), ' '
+				else
+					string.gsub! Regexp.new('<(script|style).*?>.*?<\/(script|style).*?>', 
+																	Regexp::MULTILINE), ''
+					string.gsub! Regexp.new('<.+?>',
+																	Regexp::MULTILINE), ''
+					string.gsub! Regexp.new('\s+', Regexp::MULTILINE), ' '
 				end
         string.strip
       end
