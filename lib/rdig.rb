@@ -53,8 +53,10 @@ end
 #require 'htmlentities/htmlentities'
 
 
-$KCODE = 'u'
-require 'jcode'
+if RUBY_VERSION < '1.9'
+	$KCODE = 'u'
+	require 'jcode'
+end
 
 # See README for basic usage information
 module RDig
